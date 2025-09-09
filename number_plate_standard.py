@@ -10,19 +10,29 @@ num_to_letter = {
 }
 
 uppercase_letters_to_numbers = {
-    "O": "0",
+    "O" : "0",
     "I" : "1",
-    "Z": "2",
+    "Z" : "2",
     "S" : "5",
     "B" : "8",
     "G" : "6"
 }
 
+def check_suffix_style_standard_plate(plate_text):
+
+    new_plate_text = ""
+
+    #r'^[A-Z0-9]{3} \d{1,3}[A-Z]$'
+
+    if re.match(r'^[A-Z0-9]{3} \d{1,3}[A-Z]$'):
+        pass
+
+
 def check_current_style_standard_plate(plate_text):
 
     new_plate_text = ""
 
-    if re.match(r'^[A-Z0-9]{4} [A-Z0-9]{3}$', plate_text):
+    if re.match(r'^[A-Z0-9]{4} [A-Z0-9]{3}$', plate_text): # its either a current style or prefix style plate.
         print("Match")
         print(plate_text[0:5])
 
@@ -39,7 +49,7 @@ def check_current_style_standard_plate(plate_text):
 
     else:
         print("This is a custom plate, not a standard UK plate.")
-    
+
 
 def change_letters_to_num(letter):
     number = uppercase_letters_to_numbers.get(letter)
@@ -55,5 +65,6 @@ def change_numbers_to_letters(number):
         return letter
 
     return number
+
 
 check_current_style_standard_plate("29OI 0ZX")
