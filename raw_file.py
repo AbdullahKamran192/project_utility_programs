@@ -3,19 +3,8 @@ import easyocr
 import matplotlib.pyplot as plt
 import numpy as np
 
-def read_image_method(img):
 
-    #======================== Adjustments to the image ========================
-
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    #cv2.imshow("Gray Plate", gray)
-
-    ret, thresh = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
-    #cv2.imshow("threshold Plate", thresh)
-
-    img = thresh
-
-    #==========================================================================
+def read_raw_image_method(img):
 
 
     # instance text detector
@@ -34,9 +23,8 @@ def read_image_method(img):
         if score > threshold:
             cv2.rectangle(img, bbox[0], bbox[2], (0, 255, 0), 5)
             cv2.putText(img, text, bbox[0], cv2.FONT_HERSHEY_COMPLEX, 0.65, (255, 0, 0), 2)
-
-            print(f"The text was {text}")
-            return text
+        
+        return text
     
     return ""
 
